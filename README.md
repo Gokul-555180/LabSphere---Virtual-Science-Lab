@@ -17,6 +17,11 @@ LabSphere is a premium, highly interactive virtual science laboratory applicatio
 5. **MCQ & Assertion-Reason Quizzes**: Instant verification scoring with detailed explanations.
 6. **Milestone Achievements**: Unlocking badge trophies ('First Step', 'Quiz Master', 'Dedicated Learner', and 'Polymath').
 
+--- 
+
+## Live Demo 
+(https://gokul-555180.github.io/LabSphere---Virtual-Science-Lab/)
+
 ---
 
 ## 🛠️ Tech Stack
