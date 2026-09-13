@@ -93,6 +93,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
             })}
           </div>
 
+          <div className="landing-signal-row">
+            <span><i /> 96 practicals indexed</span>
+            <span><i /> 4 live simulation engines</span>
+            <span><i /> CBSE aligned</span>
+          </div>
+
         </div>
 
         {/* Right Column: Name Input Registration Form */}

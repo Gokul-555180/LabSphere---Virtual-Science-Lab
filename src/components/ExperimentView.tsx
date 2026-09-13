@@ -18,6 +18,7 @@ import { ComputerScienceSimulation } from './simulations/ComputerScienceSimulati
 import { GenericApparatusSimulation } from './simulations/GenericApparatusSimulation';
 import { ObservationTable } from './ObservationTable';
 import { QuizView } from './QuizView';
+import { ThreeDAparatus } from './ThreeDAparatus';
 
 interface ExperimentViewProps {
   experiment: Experiment;
@@ -94,13 +95,27 @@ export const ExperimentView: React.FC<ExperimentViewProps> = ({
       </div>
 
       {/* Experiment Title Card */}
-      <div className="glass-panel border border-slate-800/80 rounded-3xl p-6 no-print">
-        <h1 className="text-xl md:text-2xl font-black text-white leading-tight">
-          {experiment.name}
-        </h1>
-        <p className="text-xs text-slate-400 mt-2 leading-relaxed max-w-2xl">
-          {experiment.objectives[0]} Read through the objectives and procedural steps first, launch the simulation, record your observations, and answer the concept quiz.
-        </p>
+      <div className="glass-panel border border-slate-800/80 rounded-3xl p-5 md:p-6 no-print experiment-hero">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-5">
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="eyebrow">Interactive practical</span>
+              <span className="live-dot"><i /> live</span>
+            </div>
+            <h1 className="text-xl md:text-3xl font-black text-white leading-tight">
+              {experiment.name}
+            </h1>
+            <p className="text-xs text-slate-400 mt-3 leading-relaxed max-w-2xl">
+              {experiment.objectives[0]} Read through the objectives and procedural steps first, launch the simulation, record your observations, and answer the concept quiz.
+            </p>
+            <div className="flex flex-wrap gap-2 mt-4">
+              <span className="metric-chip">⌁ {experiment.duration}</span>
+              <span className="metric-chip">◈ {experiment.difficulty} pathway</span>
+              <span className="metric-chip">✓ auto-record enabled</span>
+            </div>
+          </div>
+          <ThreeDAparatus experiment={experiment} />
+        </div>
       </div>
 
       {/* Tabs navigation list */}
