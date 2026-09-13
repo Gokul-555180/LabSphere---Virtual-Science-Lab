@@ -45,7 +45,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       {/* Mobile Header */}
-      <header className="md:hidden flex items-center justify-between px-5 py-4 glass-panel border-b sticky top-0 z-50">
+      <header className="mobile-header md:hidden flex items-center justify-between px-5 py-4 glass-panel border-b sticky top-0 z-50">
         <div className="flex items-center space-x-2">
           <div className="brand-mark w-9 h-9 rounded-xl flex items-center justify-center">
             <FlaskConical className="text-white" size={17} />
@@ -61,8 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </header>
 
       {/* Sidebar Panel */}
-      <aside className={`
-        fixed inset-y-0 left-0 z-40 w-64 md:w-64 glass-panel border-r flex flex-col justify-between py-6 px-4
+      <aside className={`app-sidebar fixed inset-y-0 left-0 z-40 w-64 md:w-64 glass-panel border-r flex flex-col justify-between py-6 px-4
         transition-transform duration-300 transform md:translate-x-0
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         md:sticky md:h-screen top-0
@@ -97,7 +96,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
 
           {/* Navigation Links */}
-          <nav className="space-y-1.5">
+          <nav className="sidebar-nav space-y-1.5" aria-label="Primary navigation">
             {menuItems.map((item) => {
               const Icon = item.icon;
               const isActive = currentTab === item.id;

@@ -67,10 +67,10 @@ export const ExperimentBrowser: React.FC<ExperimentBrowserProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="experiment-browser space-y-6">
       
       {/* Search and Filters Header */}
-      <div className="glass-panel border border-slate-800/80 rounded-2xl p-5 space-y-4">
+      <div className="experiment-filters glass-panel border border-slate-800/80 rounded-2xl p-5 space-y-4">
         
         {/* Search Input */}
         <div className="relative">
@@ -79,7 +79,7 @@ export const ExperimentBrowser: React.FC<ExperimentBrowserProps> = ({
             placeholder="Search experiments by name, objectives or concepts..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-900/60 text-white placeholder-slate-500 border border-slate-800/80 focus:border-indigo-500/80 focus:ring-1 focus:ring-indigo-500/80 rounded-xl pl-10 pr-4 py-3 text-sm outline-none transition"
+            className="experiment-search w-full bg-slate-900/60 text-white placeholder-slate-500 border border-slate-800/80 focus:border-indigo-500/80 focus:ring-1 focus:ring-indigo-500/80 rounded-xl pl-10 pr-4 py-3 text-sm outline-none transition"
           />
           <Search className="absolute left-3.5 top-3.5 text-slate-500" size={18} />
         </div>
@@ -88,7 +88,7 @@ export const ExperimentBrowser: React.FC<ExperimentBrowserProps> = ({
         <div className="flex flex-wrap items-center gap-4 text-xs">
           
           {/* Class Filter */}
-          <div className="flex items-center space-x-2">
+          <div className="filter-group flex items-center space-x-2">
             <span className="text-slate-400 font-medium">Class:</span>
             <div className="flex bg-slate-950/60 p-0.5 rounded-lg border border-slate-800/80">
               {['All', 'Class 10', 'Class 11', 'Class 12'].map((cls) => (
@@ -108,7 +108,7 @@ export const ExperimentBrowser: React.FC<ExperimentBrowserProps> = ({
           </div>
 
           {/* Subject Filter */}
-          <div className="flex items-center space-x-2">
+          <div className="filter-group flex items-center space-x-2">
             <span className="text-slate-400 font-medium">Subject:</span>
             <div className="flex bg-slate-950/60 p-0.5 rounded-lg border border-slate-800/80">
               {['All', 'Physics', 'Chemistry', 'Biology', 'Computer Science'].map((sub) => (
@@ -128,7 +128,7 @@ export const ExperimentBrowser: React.FC<ExperimentBrowserProps> = ({
           </div>
 
           {/* Difficulty Filter */}
-          <div className="flex items-center space-x-2 ml-auto">
+          <div className="filter-group flex items-center space-x-2 ml-auto">
             <span className="text-slate-400 font-medium">Difficulty:</span>
             <div className="flex bg-slate-950/60 p-0.5 rounded-lg border border-slate-800/80">
               {['All', 'Easy', 'Medium', 'Hard'].map((diff) => (
@@ -171,7 +171,7 @@ export const ExperimentBrowser: React.FC<ExperimentBrowserProps> = ({
 
       {/* Experiments Grid */}
       {filteredExperiments.length === 0 ? (
-        <div className="glass-panel rounded-2xl border border-slate-800/80 py-16 text-center">
+        <div className="empty-state glass-panel rounded-2xl border border-slate-800/80 py-16 text-center">
           <FlaskConical className="mx-auto text-slate-600 mb-4 animate-pulse" size={48} />
           <h3 className="text-base font-bold text-white mb-1">No experiments matched your search</h3>
           <p className="text-slate-400 text-xs max-w-md mx-auto">
@@ -185,7 +185,7 @@ export const ExperimentBrowser: React.FC<ExperimentBrowserProps> = ({
             return (
               <div 
                 key={exp.id}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/30 glass-card transition-all duration-300"
+                className="experiment-card group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/30 glass-card transition-all duration-300"
               >
                 {/* Top Image & Saved Button */}
                 <div className="relative h-44 overflow-hidden border-b border-slate-800/60">

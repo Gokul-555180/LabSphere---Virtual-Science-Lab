@@ -65,15 +65,15 @@ export const Dashboard: React.FC<DashboardProps> = ({
   ) || 0;
 
   return (
-    <div className="space-y-8 p-1 md:p-4">
+    <div className="dashboard-shell space-y-8 p-1 md:p-4">
       {/* Welcome Banner */}
-      <div className="relative rounded-3xl overflow-hidden glass-panel border border-slate-800/80 p-6 md:p-8 glow-primary">
+      <div className="dashboard-welcome relative rounded-3xl overflow-hidden glass-panel border border-slate-800/80 p-6 md:p-8 glow-primary">
         {/* Background glow effects */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl -z-10 pulse-glow" />
         <div className="absolute bottom-0 left-0 w-60 h-60 bg-pink-500/5 rounded-full blur-2xl -z-10 pulse-glow" />
         
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-3">
+          <div className="dashboard-welcome-copy space-y-3">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-400 text-xs font-semibold">
               <Sparkles size={12} />
               <span>Explore the Universe in Virtual Labs</span>
@@ -105,7 +105,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {/* Quick Metrics Dial */}
-          <div className="flex items-center space-x-4 bg-slate-900/50 border border-slate-800/80 rounded-2xl p-4 md:w-72">
+          <div className="dashboard-progress flex items-center space-x-4 bg-slate-900/50 border border-slate-800/80 rounded-2xl p-4 md:w-72">
             <div className="relative w-16 h-16 flex-shrink-0">
               <svg className="w-full h-full transform -rotate-95" viewBox="0 0 36 36">
                 <path
@@ -153,11 +153,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
           
           {/* Subject Cards Section */}
           <div className="space-y-4">
-            <h2 className="text-xl font-bold text-white flex items-center space-x-2">
+            <h2 className="section-heading text-xl font-bold text-white flex items-center space-x-2">
               <BookOpen className="text-indigo-400" size={20} />
               <span>Explore by Subject</span>
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="subject-grid grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { name: 'Physics', icon: '⚡', color: 'from-blue-600/25 to-blue-500/5 hover:border-blue-500/40 text-blue-400', count: getSubjectCount('Physics'), done: getSubjectCompletedCount('Physics') },
                 { name: 'Chemistry', icon: '🧪', color: 'from-emerald-600/25 to-emerald-500/5 hover:border-emerald-500/40 text-emerald-400', count: getSubjectCount('Chemistry'), done: getSubjectCompletedCount('Chemistry') },
@@ -167,7 +167,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                 <button
                   key={sub.name}
                   onClick={() => selectSubject(sub.name)}
-                  className={`relative overflow-hidden rounded-2xl border border-slate-800/80 bg-gradient-to-br ${sub.color} p-4 text-left transition-all duration-300 group hover:-translate-y-1 hover:shadow-lg`}
+                  className={`subject-card relative overflow-hidden rounded-2xl border border-slate-800/80 bg-gradient-to-br ${sub.color} p-4 text-left transition-all duration-300 group hover:-translate-y-1 hover:shadow-lg`}
                 >
                   <div className="text-2xl mb-3 group-hover:scale-110 transition duration-300">{sub.icon}</div>
                   <h3 className="font-bold text-white text-sm md:text-base leading-tight mb-1">{sub.name}</h3>
@@ -189,11 +189,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
           {/* Continue Learning / Recommended Experiment */}
           {recommendedExperiment && (
             <div className="space-y-4">
-              <h2 className="text-xl font-bold text-white flex items-center space-x-2">
+              <h2 className="section-heading text-xl font-bold text-white flex items-center space-x-2">
                 <FlaskConical className="text-indigo-400" size={20} />
                 <span>Recommended Practical</span>
               </h2>
-              <div className="rounded-2xl border border-slate-800/80 bg-slate-900/40 hover:bg-slate-900/60 transition-all p-5 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="recommended-card rounded-2xl border border-slate-800/80 bg-slate-900/40 hover:bg-slate-900/60 transition-all p-5 flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex items-start md:items-center space-x-4">
                   <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 border border-slate-800">
                     <ExperimentImage 
@@ -232,7 +232,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         <div className="space-y-8">
           
           {/* Daily Streak & XP Cards */}
-          <div className="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-5 space-y-4">
+          <div className="dashboard-side-card rounded-2xl border border-slate-800/80 bg-slate-900/40 p-5 space-y-4">
             <h2 className="text-lg font-bold text-white">Daily Accomplishments</h2>
             
             <div className="grid grid-cols-2 gap-3">
@@ -257,7 +257,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {/* Recently Performed Experiments */}
-          <div className="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-5 space-y-4">
+          <div className="dashboard-side-card rounded-2xl border border-slate-800/80 bg-slate-900/40 p-5 space-y-4">
             <h2 className="text-lg font-bold text-white flex items-center space-x-2">
               <CheckCircle2 className="text-emerald-400" size={18} />
               <span>Recent Activity</span>
