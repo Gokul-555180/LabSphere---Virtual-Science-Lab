@@ -115,7 +115,7 @@ function App() {
   }
 
   return (
-    <div className="labsphere-app min-h-screen flex flex-col md:flex-row bg-[#0b0f19] text-slate-100 font-sans">
+    <div className="labsphere-app min-h-screen flex flex-col md:flex-row font-sans">
       
       {/* Sidebar Navigation */}
       <Sidebar 
@@ -126,7 +126,7 @@ function App() {
       />
 
       {/* Main Workspace Frame */}
-      <main className="flex-grow p-4 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full space-y-6">
+      <main className="labsphere-workspace flex-grow p-4 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full space-y-6">
         
         {/* Render Experiment Sub-page View if active */}
         {selectedExperiment ? (

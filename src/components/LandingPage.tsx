@@ -62,10 +62,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
       </header>
 
       {/* Main hero & registration grid */}
-      <main className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto py-8 z-10">
+      <main className="landing-hero max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto py-8 z-10">
         
         {/* Left Column: Premium Feature Listing */}
-        <div className="lg:col-span-7 space-y-8">
+        <div className="landing-hero-copy lg:col-span-7 space-y-8">
           
           {/* Main Slogan */}
           <div className="space-y-4">
@@ -131,6 +131,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
           <div className="landing-form w-full max-w-sm p-6 md:p-8 space-y-6">
             
             <div className="space-y-1.5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[.16em] text-violet-700">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,.12)]" />
+                Lab access is open
+              </div>
               <h3 className="text-lg font-black text-slate-950">Open your lab notebook</h3>
               <p className="text-xs text-slate-500">
                 Register your name and class level to start conducting virtual labs.

@@ -236,9 +236,19 @@ body {
 .landing-class-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; border: 1px solid #dedbea; border-radius: 13px; background: #fafaff; }
 .landing-submit { width: 100%; padding: 13px; border: 0; font-size: 12px; }
 .labsphere-app { color: #25233c; background: #f8f8fd !important; }
+.labsphere-workspace { position: relative; background: linear-gradient(180deg, rgba(248,248,253,.72), rgba(255,255,255,.3)); }
+.labsphere-workspace > * { animation: workspaceReveal .45s ease both; }
+.labsphere-app .text-indigo-300, .labsphere-app .text-indigo-400 { color: #6d28d9; }
+.labsphere-app .bg-indigo-600 { background-color: #6d28d9; }
+.labsphere-app .bg-indigo-600:hover { background-color: #5b21b6; }
+.labsphere-app .border-indigo-500\/25, .labsphere-app .border-indigo-500\/30 { border-color: #ddd6fe; }
+.labsphere-app .rounded-3xl { border-radius: 26px; }
 .labsphere-app .glass-panel, .labsphere-app .glass-card { background: rgba(255,255,255,.88); border-color: #e8e7f2; box-shadow: 0 14px 35px rgba(76,29,149,.05); }
 .labsphere-app .text-white { color: #18182b; }.labsphere-app .text-slate-100, .labsphere-app .text-slate-200, .labsphere-app .text-slate-300 { color: #36344d; }.labsphere-app .text-slate-400, .labsphere-app .text-slate-500 { color: #7b7890; }
 .labsphere-app .bg-slate-900\/40, .labsphere-app .bg-slate-900\/50, .labsphere-app .bg-slate-900\/60, .labsphere-app .bg-slate-950\/60 { background: rgba(255,255,255,.7); }.labsphere-app .border-slate-800, .labsphere-app .border-slate-800\/80, .labsphere-app .border-slate-900 { border-color: #e8e7f2; }
+.sidebar-stat { border: 1px solid #e8e7f2; background: linear-gradient(135deg, #ffffff, #f6f3ff); box-shadow: 0 12px 26px rgba(76,29,149,.06); }
+.sidebar-nav-active { color: #5b21b6; border: 1px solid #ddd6fe; background: linear-gradient(100deg, #f5f3ff, #faf5ff); box-shadow: 0 8px 18px rgba(124,58,237,.08); }
+@keyframes workspaceReveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 1024px) { .people-lab-scene { position: relative; width: 100%; right: auto; top: auto; margin: -12px 0 15px; } }
 @media (max-width: 640px) { .landing-value-strip { grid-template-columns: repeat(2, 1fr); }.landing-value-strip > div:nth-child(2) { border: 0; }.people-lab-scene { min-width: 0; transform: scale(.82); transform-origin: left top; margin-bottom: -35px; } }
 
@@ -278,6 +288,158 @@ body {
   0%, 100% {
     border-color: #6366f1;
     box-shadow: 0 0 10px rgba(99, 102, 241, 0.1);
+  }
+
+  /* LabSphere light surface system */
+  :root {
+    color-scheme: light;
+    --bg-app: #f4f4f8;
+    --card-bg: rgba(255, 255, 255, .82);
+    --border-color: #e5e3ef;
+    --text-main: #5f6072;
+    --text-title: #171629;
+    --text-muted: #8b8b9d;
+    --ink: #171629;
+    --violet: #7046e8;
+    --cobalt: #3b5bdb;
+    --glow-color: rgba(112, 70, 232, .12);
+  }
+
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    background-image:
+      radial-gradient(circle at 87% 2%, rgba(156, 132, 255, .17), transparent 28rem),
+      radial-gradient(circle at 4% 95%, rgba(245, 189, 217, .16), transparent 25rem),
+      linear-gradient(rgba(102, 88, 173, .035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(102, 88, 173, .035) 1px, transparent 1px);
+    background-size: auto, auto, 44px 44px, 44px 44px;
+  }
+
+  .labsphere-app {
+    background: transparent !important;
+    color: var(--text-main);
+  }
+
+  .labsphere-workspace {
+    min-width: 0;
+  }
+
+  .labsphere-app .glass-panel,
+  .labsphere-app .glass-card {
+    background: rgba(255, 255, 255, .78);
+    border-color: #e5e3ef;
+    box-shadow: 0 20px 50px -32px rgba(48, 39, 103, .3), inset 0 1px rgba(255,255,255,.95);
+    backdrop-filter: blur(18px);
+  }
+
+  .labsphere-app .glass-card:hover {
+    border-color: #cfc3ff;
+    box-shadow: 0 22px 40px -26px rgba(83, 55, 180, .28);
+  }
+
+  .labsphere-app .text-white { color: #171629; }
+  .labsphere-app .text-slate-100,
+  .labsphere-app .text-slate-200,
+  .labsphere-app .text-slate-300 { color: #45445a; }
+  .labsphere-app .text-slate-400,
+  .labsphere-app .text-slate-500 { color: #7c7b90; }
+  .labsphere-app .bg-slate-900\/40,
+  .labsphere-app .bg-slate-900\/50,
+  .labsphere-app .bg-slate-900\/60,
+  .labsphere-app .bg-slate-950\/40,
+  .labsphere-app .bg-slate-950\/60 { background: rgba(255,255,255,.64); }
+  .labsphere-app .border-slate-800,
+  .labsphere-app .border-slate-800\/80,
+  .labsphere-app .border-slate-900 { border-color: #e5e3ef; }
+
+  .brand-mark {
+    background: linear-gradient(135deg, #4f35c6 0%, #7545ea 52%, #b14de3 100%);
+    box-shadow: 0 13px 25px rgba(105, 68, 221, .26);
+  }
+
+  .sidebar-stat {
+    background: linear-gradient(135deg, rgba(244,240,255,.95), rgba(255,255,255,.85));
+    border: 1px solid #e5ddff;
+    box-shadow: inset 0 1px #fff, 0 12px 26px rgba(77, 53, 154, .08);
+  }
+
+  .sidebar-nav-active {
+    color: #5d35c9;
+    background: linear-gradient(100deg, #f0ebff, #faf8ff);
+    border: 1px solid #ded2ff;
+    box-shadow: 0 8px 20px rgba(96, 65, 188, .1);
+  }
+
+  .labsphere-landing {
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 78% 12%, rgba(221, 212, 255, .7), transparent 26rem),
+      linear-gradient(135deg, #fbfbfd 0%, #f7f5fc 52%, #f8f9ff 100%);
+  }
+
+  .landing-grid {
+    opacity: .32;
+    background-size: 42px 42px;
+  }
+
+  .landing-nav {
+    padding-top: 12px;
+    border-bottom-color: rgba(223, 220, 238, .85);
+  }
+
+  .landing-title {
+    color: #171629;
+    font-size: clamp(3.15rem, 6vw, 6.2rem);
+    letter-spacing: -.085em;
+    line-height: .91;
+    text-wrap: balance;
+  }
+
+  .landing-title span {
+    background: linear-gradient(110deg, #5230c7, #8a45e7 65%, #3f64d8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .landing-copy {
+    color: #6d6b80;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .landing-feature {
+    border-color: rgba(224, 221, 237, .95);
+    background: rgba(255,255,255,.72);
+    box-shadow: 0 16px 30px rgba(67, 47, 137, .06), inset 0 1px #fff;
+  }
+
+  .landing-feature h4 { color: #211f35; }
+  .landing-feature p { color: #77758a; }
+
+  .landing-form {
+    border-color: #e2deee;
+    background: rgba(255,255,255,.78);
+    box-shadow: 0 30px 75px rgba(57, 40, 124, .15), inset 0 1px #fff;
+    backdrop-filter: blur(18px);
+  }
+
+  .landing-primary-button,
+  .landing-submit,
+  .landing-cta {
+    background: linear-gradient(110deg, #4f32c4, #7843e5 58%, #b34de2);
+    box-shadow: 0 15px 28px rgba(99, 59, 211, .24);
+  }
+
+  .landing-class-picker {
+    background: #f8f7fc;
+    border-color: #dedbea;
+  }
+
+  @media (max-width: 768px) {
+    .labsphere-workspace { padding-top: 1.25rem; }
+    .landing-title { font-size: clamp(3rem, 15vw, 4.8rem); }
   }
   50% {
     border-color: #d946ef;
