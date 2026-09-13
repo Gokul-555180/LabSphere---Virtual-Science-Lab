@@ -115,7 +115,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-[#0b0f19] text-slate-100 font-sans">
+    <div className="labsphere-app min-h-screen flex flex-col md:flex-row bg-[#0b0f19] text-slate-100 font-sans">
       
       {/* Sidebar Navigation */}
       <Sidebar 

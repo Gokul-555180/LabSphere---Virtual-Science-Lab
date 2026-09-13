@@ -6,7 +6,11 @@ import {
   Award, 
   FileText, 
   Sliders,
-  GraduationCap
+  GraduationCap,
+  Users,
+  Microscope,
+  Lightbulb,
+  Atom
 } from 'lucide-react';
 import type { ClassLevel } from '../types';
 
@@ -30,22 +34,31 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0f19] text-slate-100 flex flex-col justify-between py-12 px-4 md:px-8 relative overflow-hidden">
+    <div className="labsphere-landing min-h-screen flex flex-col justify-between py-6 px-4 md:px-8 relative overflow-hidden">
       
       {/* Background ambient glowing circles */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pulse-glow" />
-      <div className="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl pulse-glow" />
-      <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl pulse-glow" />
+      <div className="landing-grid" />
+      <div className="landing-orb landing-orb-one" />
+      <div className="landing-orb landing-orb-two" />
 
       {/* Top logo branding */}
-      <header className="max-w-6xl mx-auto w-full flex items-center space-x-3 z-10">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 glow-primary">
+      <header className="landing-nav max-w-6xl mx-auto w-full flex items-center justify-between z-10">
+        <div className="flex items-center space-x-3">
+        <div className="brand-mark">
           <FlaskConical className="text-white" size={20} />
         </div>
         <div>
-          <span className="text-xl font-bold bg-gradient-to-r from-white via-indigo-100 to-purple-200 bg-clip-text text-transparent tracking-tight block">LabSphere</span>
-          <span className="text-[10px] text-indigo-400 font-semibold tracking-wider uppercase font-mono">CBSE Virtual Science Lab</span>
+          <span className="text-xl font-black tracking-tight block text-slate-950">Lab<span className="text-violet-600">Sphere</span></span>
+          <span className="text-[10px] text-violet-600 font-bold tracking-wider uppercase font-mono">CBSE Virtual Science Lab</span>
         </div>
+        </div>
+        <nav className="hidden md:flex items-center gap-7 text-xs font-bold text-slate-500">
+          <span className="text-violet-700 border-b-2 border-violet-600 pb-2">Home</span>
+          <span>Subjects</span>
+          <span>Experiments</span>
+          <span>Community</span>
+          <a href="#join-lab" className="landing-cta">Enter Lab <ChevronRight size={14} /></a>
+        </nav>
       </header>
 
       {/* Main hero & registration grid */}
@@ -56,18 +69,29 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
           
           {/* Main Slogan */}
           <div className="space-y-4">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-300 text-xs font-semibold">
-              <Sparkles size={12} className="animate-spin" />
-              <span>Syllabus Aligned with CBSE Board Practical Guide</span>
+            <div className="landing-kicker">
+              <Sparkles size={12} />
+              <span>Learn · Build · Discover</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight font-serif journal-title">
-              Unleash the <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Scientist</span> Within
+            <h1 className="landing-title">
+              A brighter <span>scientific</span><br />tomorrow, together.
             </h1>
             
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl">
-              Conduct high-fidelity laboratory practicals digitally. Calibrate microscopes, connect battery loops, perform volumetric titrations, and trace variables on a premium workspace.
+            <p className="landing-copy">
+              LabSphere is a welcoming virtual lab for curious learners—perform CBSE practicals, explore cause and effect, and build confidence before you step into the real laboratory.
             </p>
+            <a href="#join-lab" className="landing-primary-button">Start exploring <ChevronRight size={17} /></a>
+          </div>
+
+          <div className="people-lab-scene" aria-label="Students collaborating around a virtual laboratory">
+            <div className="scene-note note-one">Learn together ✦</div>
+            <div className="scene-note note-two">Build ideas ✦</div>
+            <div className="scene-orbit" />
+            <div className="scene-person person-one"><span>🧑🏽‍🔬</span><b>Physics</b></div>
+            <div className="scene-person person-two"><span>👩🏽‍🔬</span><b>Chemistry</b></div>
+            <div className="scene-person person-three"><span>🧑🏻‍💻</span><b>Computer science</b></div>
+            <div className="scene-device"><Microscope size={30} /><small>virtual bench</small></div>
           </div>
 
           {/* Top Features Cards Grid */}
@@ -80,7 +104,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
             ].map((feature, i) => {
               const Icon = feature.icon;
               return (
-                <div key={i} className="p-4 bg-slate-900/40 border border-slate-800/80 rounded-2xl flex items-start space-x-3.5 hover:border-slate-700 transition">
+                <div key={i} className="landing-feature">
                   <div className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${feature.color}`}>
                     <Icon size={16} />
                   </div>
@@ -93,21 +117,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
             })}
           </div>
 
-          <div className="landing-signal-row">
-            <span><i /> 96 practicals indexed</span>
-            <span><i /> 4 live simulation engines</span>
-            <span><i /> CBSE aligned</span>
+          <div className="landing-value-strip">
+            <div><Lightbulb /><b>Learn</b><span>Understand beyond the textbook</span></div>
+            <div><Atom /><b>Experiment</b><span>Change variables safely</span></div>
+            <div><Users /><b>Collaborate</b><span>Grow with your lab community</span></div>
+            <div><Award /><b>Create impact</b><span>Build practical confidence</span></div>
           </div>
 
         </div>
 
         {/* Right Column: Name Input Registration Form */}
-        <div className="lg:col-span-5 flex justify-center">
-          <div className="w-full max-w-sm bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 glow-primary">
+        <div id="join-lab" className="lg:col-span-5 flex justify-center">
+          <div className="landing-form w-full max-w-sm p-6 md:p-8 space-y-6">
             
             <div className="space-y-1.5">
-              <h3 className="text-lg font-bold text-white">Join LabSphere</h3>
-              <p className="text-xs text-slate-400">
+              <h3 className="text-lg font-black text-slate-950">Open your lab notebook</h3>
+              <p className="text-xs text-slate-500">
                 Register your name and class level to start conducting virtual labs.
               </p>
             </div>
@@ -116,20 +141,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
               
               {/* Name Field */}
               <div className="space-y-1.5">
-                <label className="text-slate-350 font-bold block">Enter Your Name</label>
+                <label className="text-slate-600 font-bold block">Your name</label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Rahul Sharma"
-                  className="w-full bg-slate-950 text-white placeholder-slate-650 border border-slate-800 focus:border-indigo-500 rounded-xl px-3 py-3 outline-none transition font-semibold"
+                  className="landing-input"
                 />
               </div>
 
               {/* Class Selection */}
               <div className="space-y-1.5">
-                <label className="text-slate-355 font-bold block">Select CBSE Class</label>
-                <div className="grid grid-cols-3 gap-2 bg-slate-950 p-1 border border-slate-800 rounded-xl">
+                <label className="text-slate-600 font-bold block">Your class level</label>
+                <div className="landing-class-picker">
                   {(['Class 10', 'Class 11', 'Class 12'] as const).map((cls) => (
                     <button
                       key={cls}
@@ -137,8 +162,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
                       onClick={() => setClassLevel(cls)}
                       className={`py-2 rounded-lg font-bold text-[10px] transition ${
                         classLevel === cls
-                          ? 'bg-indigo-600 text-white shadow-md'
-                          : 'text-slate-400 hover:text-white hover:bg-slate-900/50'
+                          ? 'bg-violet-600 text-white shadow-md'
+                          : 'text-slate-500 hover:text-violet-700 hover:bg-violet-50'
                       }`}
                     >
                       {cls}
@@ -148,7 +173,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
               </div>
 
               {error && (
-                <p className="text-[10px] text-rose-400 bg-rose-500/5 border border-rose-500/10 p-2.5 rounded-lg leading-normal">
+                <p className="text-[10px] text-rose-600 bg-rose-500/5 border border-rose-500/10 p-2.5 rounded-lg leading-normal">
                   ⚠️ {error}
                 </p>
               )}
@@ -156,7 +181,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
               {/* Button */}
               <button
                 type="submit"
-                className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-black transition flex items-center justify-center space-x-1.5 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30"
+                className="landing-submit"
               >
                 <span>Enter Laboratory</span>
                 <ChevronRight size={14} />
@@ -169,7 +194,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
       </main>
 
       {/* Footer copyright */}
-      <footer className="max-w-6xl mx-auto w-full text-center text-[10px] text-slate-500 font-mono z-10 pt-8 border-t border-slate-900">
+      <footer className="max-w-6xl mx-auto w-full text-center text-[10px] text-slate-500 font-mono z-10 pt-8 border-t border-slate-200">
         &copy; {new Date().getFullYear()} LabSphere CBSE Virtual Lab. Designed for Secondary and Senior Secondary Education.
       </footer>
 

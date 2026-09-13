@@ -32,6 +32,7 @@ export const GenericApparatusSimulation: React.FC<GenericApparatusSimulationProp
   // 4. pH Samples States
   const [selectedSample, setSelectedSample] = useState<string>('lemon');
   const [stripDipped, setStripDipped] = useState<boolean>(false);
+  const [fieldCurrent, setFieldCurrent] = useState<number>(2.5);
 
   const handleReset = () => {
     setCaliperGap(2.45);
@@ -40,6 +41,7 @@ export const GenericApparatusSimulation: React.FC<GenericApparatusSimulationProp
     setKnownR(10);
     setJockeyPosition(30);
     setStripDipped(false);
+    setFieldCurrent(2.5);
   };
 
   const handleAddReading = () => {
@@ -89,6 +91,9 @@ export const GenericApparatusSimulation: React.FC<GenericApparatusSimulationProp
       };
     } else {
       readingData = {
+        current: `${fieldCurrent.toFixed(1)} A`,
+        magneticField: `${(fieldCurrent * 0.42).toFixed(2)} mT`,
+        fieldDirection: fieldCurrent >= 2.5 ? 'Right-hand rule: anticlockwise' : 'Right-hand rule: clockwise',
         timestamp: new Date().toLocaleTimeString(),
         experimentalReading: 'Sample verified successfully'
       };
@@ -428,19 +433,36 @@ export const GenericApparatusSimulation: React.FC<GenericApparatusSimulationProp
               </div>
             )}
 
-            {/* E. Default placeholder simulator */}
+            {/* E. Default physics field simulator */}
             {!['vernier-calipers-sim', 'optics-mirror-lens-sim', 'metre-bridge-sim', 'ph-samples-sim'].includes(simulationId) && (
-              <div className="w-full max-w-sm text-center py-6 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-indigo-500/10 flex items-center justify-center mx-auto text-indigo-500 animate-pulse">
-                  <Compass size={28} />
+              <div className="w-full max-w-md py-4 space-y-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 animate-pulse">
+                    <Compass size={26} />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-800 dark:text-white">Magnetic field explorer</h4>
+                    <p className="text-[11px] text-slate-400">Vary current and observe the field around the conductor.</p>
+                  </div>
                 </div>
-                <h4 className="text-sm font-bold text-slate-800 dark:text-white">CBSE Calibration Controls</h4>
-                <p className="text-xs text-slate-400 max-w-xs mx-auto">
-                  Adjust simulated calibration parameters to verify molecular, chemical, or optical physical reactions.
-                </p>
-                <div className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-xl text-xs flex justify-between font-mono">
-                  <span className="text-slate-400">System State:</span>
-                  <span className="text-indigo-400 font-bold">READY</span>
+                <div className="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-xl space-y-4">
+                  <div className="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
+                    <span>Conductor current</span>
+                    <span className="text-indigo-500 font-mono">{fieldCurrent.toFixed(1)} A</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0.5"
+                    max="5"
+                    step="0.5"
+                    value={fieldCurrent}
+                    onChange={(e) => setFieldCurrent(parseFloat(e.target.value))}
+                    className="w-full accent-indigo-600 h-1 bg-slate-200 dark:bg-slate-800 rounded-lg cursor-pointer"
+                  />
+                  <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
+                    <span className="rounded-lg bg-indigo-50 dark:bg-indigo-500/10 p-2 text-indigo-600 dark:text-indigo-300">B = {(fieldCurrent * 0.42).toFixed(2)} mT</span>
+                    <span className="rounded-lg bg-emerald-50 dark:bg-emerald-500/10 p-2 text-emerald-600 dark:text-emerald-300">{fieldCurrent >= 2.5 ? 'Anticlockwise' : 'Clockwise'}</span>
+                  </div>
                 </div>
               </div>
             )}
